@@ -1,6 +1,21 @@
 @extends('admin.layouts.app')
 @section('admin-content')
-     <div class="content">
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Dashboard v3</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Dashboard v3</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+        <div class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-6">
@@ -68,7 +83,7 @@
                   <tbody>
                   <tr>
                     <td>
-                      <img src="{{ url('/adnin/') }}dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                       Some Product
                     </td>
                     <td>$13 USD</td>
@@ -87,7 +102,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="{{ url('/adnin/') }}dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                       Another Product
                     </td>
                     <td>$29 USD</td>
@@ -106,7 +121,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="{{ url('/adnin/') }}dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                       Amazing Product
                     </td>
                     <td>$1,230 USD</td>
@@ -125,7 +140,7 @@
                   </tr>
                   <tr>
                     <td>
-                      <img src="{{ url('/adnin/') }}dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
+                      <img src="dist/img/default-150x150.png" alt="Product 1" class="img-circle img-size-32 mr-2">
                       Perfect Item
                       <span class="badge bg-danger">NEW</span>
                     </td>
@@ -247,5 +262,5 @@
         <!-- /.row -->
       </div>
       <!-- /.container-fluid -->
-    </div>   
+    </div>
 @endsection
