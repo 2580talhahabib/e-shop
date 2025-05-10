@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="{{ url('admin/dist/css/adminlte.min.css') }}">
   {{-- font owesom cdn  --}}
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <!--
 `body` tag options:
@@ -27,37 +28,17 @@
 -->
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
-  <!-- Navbar -->
- @include('admin.layouts.navbar')
-  <!-- /.navbar -->
+  @include('admin.layouts.navbar')
 
-  <!-- Main Sidebar Container -->
-@include('admin.layouts.sidebar')
+  @include('admin.layouts.sidebar')
 
-  <!-- Content Wrapper. Contains page content -->
+  <!-- Fix is here: wrap your content -->
+  <div class="content-wrapper">
+    @yield('admin-content')
+  </div>
 
-    <!-- Content Header (Page header) -->
-
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-@yield('admin-content')
-
-    <!-- /.content -->
-
-  
-  <!-- /.content-wrapper -->
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-
-  <!-- Main Footer -->
-@include('admin.layouts.footer')
+  @include('admin.layouts.footer')
 </div>
-<!-- ./wrapper -->
 
 <!-- REQUIRED SCRIPTS -->
 

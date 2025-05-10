@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,12 @@ use Illuminate\Support\Facades\Route;
 // });
 // Admin Side Routes 
 
+
+// Auth Controller 
+Route::get('/register',[AuthController::class,'register'])->name('Auth.register');
+Route::post('/registerauth',[AuthController::class,'registerauth'])->name('Auth.registerauth');
+Route::get('/login',[AuthController::class,'login'])->name('Auth.login');
+Route::post('/loginauth',[AuthController::class,'loginauth'])->name('Auth.loginauth');
 // Dashboard Controller 
 Route::get('/Dashboard',[DashboardController::class,'index'])->name('Dashboard');
 // Admin controller 

@@ -16,7 +16,10 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
  
-
+ <li class="nav-item ">
+      <a href="{{ route('Auth.register') }}" class="btn btn-sm btn-primary">Sign Up</a>
+      <a href="" class="btn btn-sm btn-danger"> Login</a>
+      </li>
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
