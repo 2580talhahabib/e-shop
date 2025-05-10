@@ -72,7 +72,7 @@
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Sign In </a>
+        <a href="{{ route('Auth.register') }}" class="text-center">Register </a>
       </p>
     </div>
     <!-- /.login-card-body -->

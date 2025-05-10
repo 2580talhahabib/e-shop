@@ -20,6 +20,7 @@
   <div class="login-logo">
     <a href="../../index2.html"><b>Register</b>Here</a>
   </div>
+  @include('admin.layouts.message')
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
@@ -83,7 +84,7 @@
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Sign In </a>
+        <a href="{{ route('Auth.login') }}" class="text-center">Sign In </a>
       </p>
     </div>
     <!-- /.login-card-body -->

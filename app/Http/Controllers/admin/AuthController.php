@@ -22,7 +22,9 @@ class AuthController extends Controller
         User::create([
             'name'=>$req->name,
             'email'=>$req->email,
+            'role_as'=>$req->role_as,
             'password'=>Hash::make($req->password),
+            
         ]);
         return redirect()->route('Auth.login')->with('success','you are register Successfully');
     }
@@ -31,14 +33,17 @@ class AuthController extends Controller
         return view('admin.Auth.login');
     }
       public function loginauth(Request $req ){
-        
+      
              $req->validate([
             'email'=>'required',
             'password'=>'required',
         ]);
          if(Auth::attempt(['email'=>$req->email,'password'=>$req->password])){
-  
         return redirect()->route('Dashboard')->with('success','you are register Successfully');
-         }
+         }else{
+        return redirect()->route('Auth.login')->with('danger','Either Email/password is Incorrect');
+
+         
+        }
       }
 }
