@@ -18,7 +18,7 @@
                with font-awesome or any other icon font library -->
           
           
-<li class="nav-item menu-open">
+<li class="nav-item {{ Route::is('Dashboard') ? 'menu-open' : '' }}">
             <a href="{{ route('Dashboard') }}" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
@@ -26,7 +26,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item {{ Route::is('admin.list') ? 'menu-open' : '' }}">
             <a href="{{ route('admin.list') }}" class="nav-link ">
             <i class="fa-solid fa-user-tie ml-2"></i>
               <p class="ml-2">
@@ -34,7 +34,7 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open">
+          <li class="nav-item ">
             <a href="#" class="nav-link ">
             <i class="fa-brands fa-product-hunt ml-2"></i>
               <p class="ml-2">
@@ -42,14 +42,15 @@
               </p>
             </a>
           </li>
-          <li class="nav-item menu-open ">
-            <a href="#" class="nav-link  ">
-             <i class="fa-solid fa-right-from-bracket ml-2"></i>
-              <p class="ml-2">
-                Logout
-              </p>
-            </a>
+      
+          <li class="nav-item {{ Route::is('logout') ? 'menu-open' : '' }}" 
+          style="
+          position: fixed; 
+         top:200px"
+          >
+              
           </li>
+       
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

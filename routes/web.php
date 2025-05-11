@@ -27,6 +27,7 @@ Route::get('/register',[AuthController::class,'register'])->name('Auth.register'
 Route::post('/registerauth',[AuthController::class,'registerauth'])->name('Auth.registerauth');
 Route::get('/login',[AuthController::class,'login'])->name('Auth.login');
 Route::post('/loginauth',[AuthController::class,'loginauth'])->name('Auth.loginauth');
+Route::post('/delete',[AuthController::class, 'logout'])->name('logout');
  
 
 // middleware Route 
@@ -35,4 +36,9 @@ Route::middleware('authmiddle')->group(function () {
 Route::get('/Dashboard',[DashboardController::class,'index'])->name('Dashboard');
 // Admin controller 
 Route::get('/list',[AdminController::class,'index'])->name('admin.list');
+Route::get('/create',[AdminController::class,'create'])->name('admin.create');
+Route::post('/store',[AdminController::class,'store'])->name('admin.store');
+Route::get('/edit/{id}',[AdminController::class,'edit'])->name('admin.edit');
+Route::post('/update/{id}',[AdminController::class,'update'])->name('admin.update');
+Route::post('/destroy/{id}',[AdminController::class,'destroy'])->name('admin.destroy');
 });

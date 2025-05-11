@@ -17,9 +17,13 @@
       <!-- Navbar Search -->
  
  <li class="nav-item ">
+   <form action="{{ route('logout') }}" method="POST" class="d-inline">
+    @csrf
+    <button type="submit" class="btn btn-sm btn-danger">Logout</button>
+</form>
       <a href="{{ route('Auth.register') }}" class="btn btn-sm btn-primary">Sign Up</a>
-      <a href="" class="btn btn-sm btn-danger"> Login</a>
-      </li>
+      <a href="" class="btn btn-sm btn-light"> Login</a>
+       
       <!-- Messages Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">

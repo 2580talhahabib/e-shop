@@ -22,7 +22,7 @@ class AuthController extends Controller
         User::create([
             'name'=>$req->name,
             'email'=>$req->email,
-            'role_as'=>$req->role_as,
+            'role'=>0,
             'password'=>Hash::make($req->password),
             
         ]);
@@ -45,5 +45,12 @@ class AuthController extends Controller
 
          
         }
+      }
+      public function logout(Request $req){
+   
+        
+            Auth::logout();
+            return redirect()->route('admin.list')->with('danger','you are not login');
+        
       }
 }

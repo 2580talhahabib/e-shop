@@ -1,7 +1,6 @@
 @extends('admin.layouts.app')
 @section('admin-content')
     <div class="content-header">
-@include('admin.layouts.message')
 
       <div class="container-fluid">
         <div class="row mb-2">
@@ -19,6 +18,7 @@
     </div>
 
         <div class="content">
+@include('admin.layouts.message')
       <div class="container-fluid">
         <div class="row">
           <div class="col-lg-6">

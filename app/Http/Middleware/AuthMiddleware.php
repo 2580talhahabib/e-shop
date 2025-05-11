@@ -16,7 +16,7 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->role ==  0 ){
+        if(Auth::check() && Auth::user()->role ==  1 ){
         return $next($request);
         }else{
             return redirect()->route('Auth.register')->with('danger','Your are not admin');
