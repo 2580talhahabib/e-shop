@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
     public function index(){
-        $data['admins']=User::where('role',1)->where('status',1)->get();
+        $data['admins']=User::where('role',1)->where('status',1)->paginate(10);
     return view('admin.admin.list',$data );
     }
     public function create(){

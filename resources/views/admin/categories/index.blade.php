@@ -6,10 +6,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Admins Table</h1>
+            <h1>Categories Table</h1>
           </div>
           <div class="col-sm-6">
-           <a href="{{ route('admin.create') }}" class="btn  btn-success float-right ">Add New Admins</a>
+           <a href="{{ route('category.create') }}" class="btn  btn-success float-right ">Add New Category</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -31,23 +31,29 @@
                     <tr>
                       <th style="width: 10px">#</th>
                       <th>Name</th>
-                      <th>Email</th>
+                      <th>Slug</th>
+                      <th >Meta Titles</th>
+                      <th >Meta Descripation</th>
+                      <th >Meta Keywords</th>
                       <th >Status</th>
                       <th >Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @if ($admins->isNotEmpty())
-                      @foreach ($admins as $admin)
+                    @if ($categories->isNotEmpty())
+                      @foreach ($categories as $category)
                            <tr>
-                      <td>{{ $admin ->id }}</td>
-                      <td>{{ $admin->name }}</td>
-                      <td>{{ $admin->email }}</td>
-                      <td>{{( $admin->status == 1) ? 'Active' : 'Block' }}</td>
+                      <td>{{ $category ->id }}</td>
+                      <td>{{ $category->name }}</td>
+                      <td>{{ $category->slug }}</td>
+                      <td>{{ $category->meta_title }}</td>
+                      <td>{{ $category->meta_descripation }}</td>
+                      <td>{{ $category->meta_keywords }}</td>
+                      <td>{{( $category->status == 1) ? 'Active' : 'Block' }}</td> 
                       <td>
-                        <form action="{{ route('admin.destroy',$admin->id) }}" method="POST">
+                        <form action="{{ route('category.destroy',$category->id) }}" method="POST">
                           @csrf
-                        <a href="{{ route('admin.edit',$admin->id) }}" class="btn btn-sm  btn-secondary">Update</a>
+                        <a href="{{ route('category.edit',$category->id) }}" class="btn btn-sm  btn-secondary">Update</a>
                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                         </form>
                       </td>
@@ -61,7 +67,8 @@
                   </tbody>
                 </table>
               </div>
-        {{ $admins->links() }}
+              <!-- /.card-body -->
+         {{ $categories->links() }}
             </div>
             <!-- /.card -->
 

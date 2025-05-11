@@ -42,6 +42,14 @@
               </p>
             </a>
           </li>
+            <li class="nav-item ">
+            <a href="{{ route('category.list') }}" class="nav-link ">
+           <i class="fa-solid fa-layer-group ml-2"></i>
+              <p class="ml-2">
+                Category
+              </p>
+            </a>
+          </li>
       
           <li class="nav-item {{ Route::is('logout') ? 'menu-open' : '' }}" 
           style="

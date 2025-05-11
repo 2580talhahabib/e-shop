@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,10 +36,18 @@ Route::middleware('authmiddle')->group(function () {
     // Dashboard Controller 
 Route::get('/Dashboard',[DashboardController::class,'index'])->name('Dashboard');
 // Admin controller 
-Route::get('/list',[AdminController::class,'index'])->name('admin.list');
-Route::get('/create',[AdminController::class,'create'])->name('admin.create');
-Route::post('/store',[AdminController::class,'store'])->name('admin.store');
-Route::get('/edit/{id}',[AdminController::class,'edit'])->name('admin.edit');
-Route::post('/update/{id}',[AdminController::class,'update'])->name('admin.update');
-Route::post('/destroy/{id}',[AdminController::class,'destroy'])->name('admin.destroy');
+Route::get('/list/admin',[AdminController::class,'index'])->name('admin.list');
+Route::get('/create/admin',[AdminController::class,'create'])->name('admin.create');
+Route::post('/store/admin',[AdminController::class,'store'])->name('admin.store');
+Route::get('/edit/{id}/admin',[AdminController::class,'edit'])->name('admin.edit');
+Route::post('/update/{id}/admin',[AdminController::class,'update'])->name('admin.update');
+Route::post('/destroy/{id}/admin',[AdminController::class,'destroy'])->name('admin.destroy');
+
+// category controller 
+Route::get('/list/category',[CategoryController::class,'index'])->name('category.list');
+Route::get('/create/category',[CategoryController::class,'create'])->name('category.create');
+Route::post('/store/category',[CategoryController::class,'store'])->name('category.store');
+Route::get('/edit/{id}/category',[CategoryController::class,'edit'])->name('category.edit');
+Route::post('/update/{id}/category',[CategoryController::class,'update'])->name('category.update');
+Route::post('/destroy/{id}/category',[CategoryController::class,'destroy'])->name('category.destroy');
 });
