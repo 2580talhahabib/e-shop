@@ -6,10 +6,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Categories Table</h1>
+            <h1>Brands Table</h1>
           </div>
           <div class="col-sm-6">
-           <a href="{{ route('category.create') }}" class="btn  btn-success float-right ">Add New Category</a>
+           <a href="{{ route('brand.create') }}" class="btn  btn-success float-right ">Add New Brand</a>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -40,20 +40,20 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @if ($categories->isNotEmpty())
-                      @foreach ($categories as $category)
+                    @if ($brands->isNotEmpty())
+                      @foreach ($brands as $brand)
                            <tr>
-                      <td>{{ $category ->id }}</td>
-                      <td>{{ $category->name }}</td>
-                      <td>{{ $category->slug }}</td>
-                      <td>{{ $category->meta_title }}</td>
-                      <td>{{ $category->meta_descripation }}</td>
-                      <td>{{ $category->meta_keywords }}</td>
-                      <td>{{( $category->status == 1) ? 'Active' : 'Block' }}</td> 
+                      <td>{{$brand ->id }}</td>
+                      <td>{{$brand->name }}</td>
+                      <td>{{$brand->slug }}</td>
+                      <td>{{$brand->meta_title }}</td>
+                      <td>{{$brand->meta_descripation }}</td>
+                      <td>{{$brand->meta_keywords }}</td>
+                      <td>{{($brand->status == 1) ? 'Active' : 'Block' }}</td> 
                       <td>
-                        <form action="{{ route('category.destroy',$category->id) }}" method="POST">
+                        <form action="{{ route('brand.destroy',$brand->id) }}" method="POST">
                           @csrf
-                        <a href="{{ route('category.edit',$category->id) }}"class="text-default" ><i class="fa-solid fa-pencil" ></i></a>
+                        <a href="{{ route('brand.edit',$brand->id) }}"class="text-default" ><i class="fa-solid fa-pencil" ></i></a>
                         <button type="submit" class="text-danger btn btn-none"><i class="fa-solid fa-trash"></i></button>
                         </form>
                       </td>
@@ -68,7 +68,7 @@
                 </table>
               </div>
               <!-- /.card-body -->
-         {{ $categories->links() }}
+         {{ $brands->links() }}
             </div>
             <!-- /.card -->
 

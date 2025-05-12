@@ -46,18 +46,21 @@
                            <tr>
                       <td>{{$subcategory ->id }}</td>
                       <td>{{$subcategory->name }}</td>
-                      <td>{{$subcategory->category->name }}</td>
+                      <td>{{isset($subcategory->category->name) ? $subcategory->category->name : 'No Category' }}</td>
                  
                       <td>{{$subcategory->slug }}</td>
                       <td>{{$subcategory->meta_title }}</td>
                       <td>{{$subcategory->meta_descripation }}</td>
                       <td>{{$subcategory->meta_keywords }}</td>
                       <td>{{($subcategory->status == 1) ? 'Active' : 'Block' }}</td> 
-                      <td>
+                   <td>
                         <form action="{{ route('subcategory.destroy',$subcategory->id) }}" method="POST">
                           @csrf
-                        <a href="{{ route('subcategory.edit',$subcategory->id) }}" class="btn btn-sm  btn-secondary">Update</a>
-                        <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                          <div class="d-flex">
+  <a href="{{ route('subcategory.edit',$subcategory->id) }}"class="text-default mt-2" ><i class="fa-solid fa-pencil" ></i></a>
+                        <button type="submit" class="text-danger btn btn-none "><i class="fa-solid fa-trash"></i></button>
+                          </div>
+                      
                         </form>
                       </td>
 

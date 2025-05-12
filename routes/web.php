@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AuthController;
+use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\SubCategoryController;
@@ -59,4 +60,13 @@ Route::post('/store/subcategory',[SubCategoryController::class,'store'])->name('
 Route::get('/edit/{id}/subcategory',[SubCategoryController::class,'edit'])->name('subcategory.edit');
 Route::post('/update/{id}/subcategory',[SubCategoryController::class,'update'])->name('subcategory.update');
 Route::post('/destroy/{id}/subcategory',[SubCategoryController::class,'destroy'])->name('subcategory.destroy');
+
+// Brand controller 
+Route::get('/list/brand',[BrandController::class,'index'])->name('brand.list');
+Route::get('/create/brand',[BrandController::class,'create'])->name('brand.create');
+Route::post('/store/brand',[BrandController::class,'store'])->name('brand.store');
+Route::get('/edit/{id}/brand',[BrandController::class,'edit'])->name('brand.edit');
+Route::post('/update/{id}/brand',[BrandController::class,'update'])->name('brand.update');
+Route::post('/destroy/{id}/brand',[BrandController::class,'destroy'])->name('brand.destroy');
+
 });
