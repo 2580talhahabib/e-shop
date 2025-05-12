@@ -65,7 +65,14 @@
               </p>
             </a>
           </li>
-      
+         <li class="nav-item ">
+            <a href="{{ route('color.list') }}" class="nav-link ">
+          <i class="fa-solid fa-droplet ml-2"></i>
+              <p class="ml-2">
+                Color
+              </p>
+            </a>
+          </li>
         
        
         </ul>

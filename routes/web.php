@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\admin\AuthController;
 use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -68,5 +69,13 @@ Route::post('/store/brand',[BrandController::class,'store'])->name('brand.store'
 Route::get('/edit/{id}/brand',[BrandController::class,'edit'])->name('brand.edit');
 Route::post('/update/{id}/brand',[BrandController::class,'update'])->name('brand.update');
 Route::post('/destroy/{id}/brand',[BrandController::class,'destroy'])->name('brand.destroy');
+
+// Color controller 
+Route::get('/list/color',[ColorController::class,'index'])->name('color.list');
+Route::get('/create/color',[ColorController::class,'create'])->name('color.create');
+Route::post('/store/color',[ColorController::class,'store'])->name('color.store');
+Route::get('/edit/{id}/color',[ColorController::class,'edit'])->name('color.edit');
+Route::post('/update/{id}/color',[ColorController::class,'update'])->name('color.update');
+Route::post('/destroy/{id}/color',[ColorController::class,'destroy'])->name('color.destroy');
 
 });

@@ -39,7 +39,7 @@ class AuthController extends Controller
             'password'=>'required',
         ]);
          if(Auth::attempt(['email'=>$req->email,'password'=>$req->password])){
-        return redirect()->route('Dashboard')->with('success','you are register Successfully');
+        return redirect()->route('Dashboard')->with('success','you are login Successfully');
          }else{
         return redirect()->route('Auth.login')->with('danger','Either Email/password is Incorrect');
 
