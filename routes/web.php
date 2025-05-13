@@ -6,6 +6,7 @@ use App\Http\Controllers\admin\BrandController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,15 @@ Route::post('/store/admin',[AdminController::class,'store'])->name('admin.store'
 Route::get('/edit/{id}/admin',[AdminController::class,'edit'])->name('admin.edit');
 Route::post('/update/{id}/admin',[AdminController::class,'update'])->name('admin.update');
 Route::post('/destroy/{id}/admin',[AdminController::class,'destroy'])->name('admin.destroy');
+
+
+// product controller 
+Route::get('/list/product',[ProductController::class,'index'])->name('product.list');
+Route::get('/create/product',[ProductController::class,'create'])->name('product.create');
+Route::post('/store/product',[ProductController::class,'store'])->name('product.store');
+Route::get('/edit/{id}/product',[ProductController::class,'edit'])->name('product.edit');
+Route::post('/update/{id}/product',[ProductController::class,'update'])->name('product.update');
+Route::post('/destroy/{id}/product',[ProductController::class,'destroy'])->name('product.destroy');
 
 // category controller 
 Route::get('/list/category',[CategoryController::class,'index'])->name('category.list');

@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a href="#" class="nav-link ">
+            <a href="{{ route('product.list') }}" class="nav-link ">
             <i class="fa-brands fa-product-hunt ml-2"></i>
               <p class="ml-2">
                 Products

@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('subcategory_id')->constrained()->onDelete('cascade');
-            $table->foreignId('brand_id')->constrained()->onDelete('cascade');
-            $table->double('old_price');
-            $table->double('price');
-            $table->text('short_desc');
-            $table->longText('descripation');
-            $table->text('additional_information');
-            $table->text('shipping_returns');
+            $table->string('sku')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('subcategory_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('brand_id')->nullable()->constrained()->onDelete('cascade');
+            $table->double('old_price')->nullable();
+            $table->double('price')->nullable();
+            $table->text('short_desc')->nullable();
+            $table->longText('descripation')->nullable();
+            $table->text('additional_information')->nullable();
+            $table->text('shipping_returns')->nullable();
            $table->integer('status')->default(1)->comment('1 =active ,0 =Inactive');
 
             $table->timestamps();
