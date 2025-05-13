@@ -7,6 +7,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ColorController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ProductController;
+use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +40,8 @@ Route::post('/delete',[AuthController::class, 'logout'])->name('logout');
 Route::middleware('authmiddle')->group(function () {
     // Dashboard Controller 
 Route::get('/Dashboard',[DashboardController::class,'index'])->name('Dashboard');
+// ProductSubCategroyController 
+Route::get('/productSucategory',[ProductSubCategoryController::class,'index'])->name('productSubcategory');
 // Admin controller 
 Route::get('/list/admin',[AdminController::class,'index'])->name('admin.list');
 Route::get('/create/admin',[AdminController::class,'create'])->name('admin.create');

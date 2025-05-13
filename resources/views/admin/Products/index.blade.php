@@ -48,7 +48,7 @@
                       <td>
                         <form action="{{ route('product.destroy',$product->id) }}" method="POST">
                           @csrf
-                        <a href="{{ route('product.destroy',$product->id) }}"class="text-default" ><i class="fa-solid fa-pencil" ></i></a>
+                        <a href="{{ route('product.edit',$product->id) }}"class="text-default" ><i class="fa-solid fa-pencil" ></i></a>
                         <button type="submit" class="text-danger btn btn-none"><i class="fa-solid fa-trash"></i></button>
                         </form>
                       </td>
