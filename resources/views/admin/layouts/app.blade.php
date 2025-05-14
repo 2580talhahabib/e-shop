@@ -55,6 +55,9 @@
 {{-- <script src="{{ url('admin/dist/js/demo.js') }}"></script> --}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ url('admin/dist/js/pages/dashboard3.js') }}"></script>
+ <!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
 @yield('script-content')
 </body>
 </html>

@@ -28,7 +28,7 @@
             
               <!-- /.card-header -->
               <!-- form start -->
-              <form  action="{{ route('category.update',$edit->id) }}" method="POST" > 
+              <form  action="{{ route('product.update',$edit->id) }}" method="POST" enctype="multipart/form-data" > 
                  @csrf
                 <div class="card-body">
                   <div class="form-group">
@@ -42,7 +42,7 @@
               <div class="field d-flex">
                      <div class="form-group col-md-6">
                     <label for="exampleInputEmail1">Category</label>
-                   <select name="" id="cat_id" class="form-control">
+                   <select name="category_id" id="cat_id" class="form-control">
                     @if ($categories->isNotEmpty())
                     <option value="">Select a Category</option>
                     @foreach ($categories as $category)
@@ -53,43 +53,47 @@
                   </div>
                         <div class="form-group col-md-6">
                     <label for="exampleInputEmail1">Sub Category</label>
-                   <select name="" id="subcategories" class="form-control">
+                   <select name="subcategory_id" id="subcategories" class="form-control">
              
                    </select>
                   </div>
               </div>
                   <div class="form-group">
                     <label for="exampleInputEmail1">Brands</label>
-                   <select name="" id="" class="form-control">
+                   <select name="brand_id" id="" class="form-control">
+                    @if ($brands->isNotEmpty())
                     <option value="">Select a Brand</option>
+                        @foreach ($brands as $brand)
+                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                            
+                        @endforeach
+                    @endif
                    </select>
                   </div>
 
                  <div class="prices d-flex">
                    <div class="form-group col-md-6">
                     <label for="exampleInputEmail1">Price</label>
-                   <input type="number" name="" class="form-control">
+                   <input type="number" name="price" class="form-control">
                   </div>
                     <div class="form-group col-md-6">
                     <label for="exampleInputEmail1">Old Price</label>
-                   <input type="number" name="" class="form-control">
+                   <input type="number" name="old_price" class="form-control">
                   </div>
                  </div>
                   
                    <div class="form-group">
                     <label for="exampleInputEmail1">Color</label>
+                  @if ($colors->isNotEmpty())
+                      @foreach ($colors as $color)
                   <div class="check-fields">
-                      <input type="checkbox" class="mr-1">
-                    <label for="">Red</label>
+                          <input type="checkbox" id="{{ $color->id }}" class="mr-1">
+                    <label for=" {{ $color->id }}">{{ $color->name }}</label>                            
                   </div>
-                   <div class="check-fields">
-                      <input type="checkbox" class="mr-1">
-                    <label for="">green</label>
-                  </div>
-                   <div class="check-fields">
-                      <input type="checkbox" class="mr-1">
-                    <label for="">Blue</label>
-                  </div>
+                      @endforeach
+                  @endif
+
+        
                   </div>
                      <div class="form-group">
                     <label for="exampleInputEmail1">Size</label>
@@ -101,8 +105,8 @@
                     </thead>
                     <tbody >
                       <tr>
-                      <td><input type="text" class="form-control"></td>
-                      <td><input type="text" class="form-control"></td>
+                      <td><input type="text" name="sizes[0][name]" class="form-control"></td>
+                      <td><input type="text" name="sizes[0][price]" class="form-control"></td>
                       <td>
                         <button class="btn btn-secondary addsize" >Add</button>
                         {{-- <button class="btn btn-danger">Delete</button> --}}
@@ -114,21 +118,28 @@
                    </tbody>
                    </table>
                   </div>
-   <div class="form-group ">
+                  <div class="form-group ">
+                    <label for="exampleInputEmail1">Image</label>
+                 <input type="file" class="form-control" style="padding: 5px;" name="image[]" multiple></input>
+                  </div>
+                 <div class="display-image">
+                  <img src="{{ url(public_path('/storage/product'.)) }}" alt="">
+                 </div>
+                  <div class="form-group ">
                     <label for="exampleInputEmail1">Short Descripation</label>
-                   <textarea name="" id=""  class="form-control"></textarea>
+                 <textarea class="summernote" name="short_desc"></textarea>
                   </div>
                      <div class="form-group ">
                     <label for="exampleInputEmail1"> Descripation</label>
-                   <textarea name="" id=""  class="form-control"></textarea>
+                   <textarea class="summernote" name="descripation"></textarea>
                   </div>
                      <div class="form-group ">
                     <label for="exampleInputEmail1">Additional  Information</label>
-                   <textarea name="" id=""  class="form-control"></textarea>
+                 <textarea class="summernote" name="additional_information"></textarea>
                   </div>
                      <div class="form-group ">
                     <label for="exampleInputEmail1">Shipping Returns</label>
-                   <textarea name="" id=""  class="form-control"></textarea>
+                  <textarea class="summernote" name="shipping_returns"></textarea>
                   </div>
 
                   
@@ -166,17 +177,19 @@
 @endsection
 @section('script-content')
 <script>
+  let priceIndex=1;
 $(".addsize").click(function(e){
   e.preventDefault();
 var html=`   <tr>
-                      <td><input type="text" class="form-control"></td>
-                      <td><input type="text" class="form-control"></td>
+                      <td><input type="text" name="sizes[${priceIndex}][name]" class="form-control"></td>
+                      <td><input type="text"  name="sizes[${priceIndex}][price]" class="form-control"></td>
                       <td>
                       
                          <button class="btn btn-danger remove-size">Delete</button>
                       </td>
                       </tr>`
 $('#appendsize').append(html);
+priceIndex ++;
 
 })
 
@@ -191,6 +204,7 @@ $('#appendsize').append(html);
 
 
   $(document).ready(function () {
+      $('.summernote').summernote();
     $("#cat_id").change(function () {
       let cat_id = $(this).val();
       console.log(cat_id);
@@ -201,7 +215,7 @@ $('#appendsize').append(html);
         dataType: 'json',
         data: { cat_id: cat_id },
         success: function (response) {
-          $('#subcategories').append('<option> Select a SubCategory</option>');
+          // $('#subcategories').append('<option> Select a SubCategory</option>'); 
           response.message.forEach(function (subcategories) {
             $('#subcategories').append("<option value=" + subcategories.id + ">" + subcategories.name + "</option>");
           });
@@ -209,6 +223,28 @@ $('#appendsize').append(html);
       });
     });
   });
+
+  // tiymc editor 
+   $('.editor').tinymce({
+        height: 500,
+        menubar: false,
+        plugins: [
+          'a11ychecker', 'accordion', 'advlist', 'anchor', 'autolink', 'autosave',
+          'charmap', 'code', 'codesample', 'directionality', 'emoticons', 'exportpdf',
+          'exportword', 'fullscreen', 'help', 'image', 'importcss', 'importword',
+          'insertdatetime', 'link', 'lists', 'markdown', 'math', 'media', 'nonbreaking',
+          'pagebreak', 'preview', 'quickbars', 'save', 'searchreplace', 'table',
+          'visualblocks', 'visualchars', 'wordcount'
+        ],
+        toolbar: 'undo redo | accordion accordionremove | ' +
+          'importword exportword exportpdf | math | ' +
+          'blocks fontfamily fontsize | bold italic underline strikethrough | ' +
+          'align numlist bullist | link image | table media | ' +
+          'lineheight outdent indent | forecolor backcolor removeformat | ' +
+          'charmap emoticons | code fullscreen preview | save print | ' +
+          'pagebreak anchor codesample | ltr rtl',
+        menubar: 'file edit view insert format tools table help'
+      });
 </script>
 
 

@@ -28,7 +28,7 @@
             
               <!-- /.card-header -->
               <!-- form start -->
-              <form  action="{{ route('brand.update',$edit->id) }}" method="POST" >
+              <form  action="{{ route('brand.update',$edit->id) }}" method="POST"  >
                 @csrf
                 <div class="card-body">
                   <div class="form-group">
