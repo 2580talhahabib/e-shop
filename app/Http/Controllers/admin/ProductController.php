@@ -36,6 +36,7 @@ class ProductController extends Controller
           $data['categories']=Category::where('status',1)->get();
            $data['brands']=Brand::where('status',1)->get();
            $data['colors']=Color::where('status',1)->get();
+          $data['products']=Product::with('productImage')->get();
         $data['edit']=Product::find($id);
         return view('admin.Products.update',$data);
     }

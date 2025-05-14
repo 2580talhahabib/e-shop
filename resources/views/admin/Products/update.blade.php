@@ -123,7 +123,10 @@
                  <input type="file" class="form-control" style="padding: 5px;" name="image[]" multiple></input>
                   </div>
                  <div class="display-image">
-                  <img src="{{ url(public_path('/storage/product'.)) }}" alt="">
+                  <h3>previous Images</h3>
+              @foreach ($edit->productimage as $image)
+    <img src="{{ url('storage/product/' . $image->image_name) }}" class="img-fluid" alt="" style="height:200px;width:200px;margin:5px;border:5px solid gray" >
+@endforeach
                  </div>
                   <div class="form-group ">
                     <label for="exampleInputEmail1">Short Descripation</label>
