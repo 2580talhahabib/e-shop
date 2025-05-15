@@ -58,8 +58,13 @@ Route::post('/store/product',[ProductController::class,'store'])->name('product.
 Route::get('/edit/{id}/product',[ProductController::class,'edit'])->name('product.edit');
 Route::post('/update/{id}/product',[ProductController::class,'update'])->name('product.update');
 Route::post('/destroy/{id}/product',[ProductController::class,'destroy'])->name('product.destroy');
+Route::post('/deleteImage/{id}/product',[ProductController::class,'deleteImage'])->name('product.deleteImage');
+// Route::post('/productsort',[ProductController::class,'productsort'])->name('product.productsort');
+
+
 
 // category controller 
+
 Route::get('/list/category',[CategoryController::class,'index'])->name('category.list');
 Route::get('/create/category',[CategoryController::class,'create'])->name('category.create');
 Route::post('/store/category',[CategoryController::class,'store'])->name('category.store');

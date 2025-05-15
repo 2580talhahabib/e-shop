@@ -18,6 +18,7 @@
     </section>
 
     <!-- Main content -->
+    @include('admin.layouts.message')
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -122,12 +123,24 @@
                     <label for="exampleInputEmail1">Image</label>
                  <input type="file" class="form-control" style="padding: 5px;" name="image[]" multiple></input>
                   </div>
-                 <div class="display-image">
-                  <h3>previous Images</h3>
-              @foreach ($edit->productimage as $image)
-    <img src="{{ url('storage/product/' . $image->image_name) }}" class="img-fluid" alt="" style="height:200px;width:200px;margin:5px;border:5px solid gray" >
-@endforeach
-                 </div>
+            <h3>Previous Images</h3>
+<div class="display-image d-flex flex-wrap" id="sortable">
+    @foreach ($edit->productimage as $image)
+        <div class="image-wrapper d-flex flex-column align-items-center sortable_image" data-id="{{ $image->id }}" style="margin: 10px;">
+            <img src="{{ url('storage/product/' . $image->image_name) }}" 
+                 class="img-fluid" 
+                 alt="Product Image" 
+                 style="height: 200px; width: 200px; border: 5px solid gray; object-fit: cover;">
+
+            <form action="{{ route('product.deleteImage',$image->id) }}" method="POST" style="margin-top: 10px;">
+                @csrf
+               
+                <button type="submit" class="btn  btn-danger mt-3">Delete</button>
+            </form>
+        </div>
+    @endforeach
+</div>
+
                   <div class="form-group ">
                     <label for="exampleInputEmail1">Short Descripation</label>
                  <textarea class="summernote" name="short_desc"></textarea>
@@ -180,6 +193,9 @@
 @endsection
 @section('script-content')
 <script>
+
+
+
   let priceIndex=1;
 $(".addsize").click(function(e){
   e.preventDefault();
@@ -207,6 +223,13 @@ priceIndex ++;
 
 
   $(document).ready(function () {
+  $( function() {
+    $( "#sortable" ).sortable()
+  
+      });
+    });
+
+
       $('.summernote').summernote();
     $("#cat_id").change(function () {
       let cat_id = $(this).val();
@@ -217,6 +240,8 @@ priceIndex ++;
         type: 'GET',
         dataType: 'json',
         data: { cat_id: cat_id },
+    
+ 
         success: function (response) {
           // $('#subcategories').append('<option> Select a SubCategory</option>'); 
           response.message.forEach(function (subcategories) {

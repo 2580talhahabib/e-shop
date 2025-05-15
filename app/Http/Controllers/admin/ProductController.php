@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Product_Size;
 use App\Models\ProductImage;
 use App\Models\ProductSize;
+use App\Models\ProSize;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -43,12 +44,12 @@ class ProductController extends Controller
     public function update($id,Request $req){
 // dd($req->all());
 
-ProductSize::where('product_id', $id)->delete();
+ProSize::where('product_id', $id)->delete();
 
 if ($req->has('sizes')) {
     foreach ($req->sizes as $size) {
         if (!empty($size['name']) && !empty($size['price'])) {
-            ProductSize::create([
+            ProSize::create([
                 'product_id' => $id,
                 'name' => $size['name'],
                 'price' => $size['price'],
@@ -69,7 +70,7 @@ if ($req->has('sizes')) {
   foreach ($req->image as $image) {
     $filename=$req->image;
     $ext=$image->getClientOriginalExtension();
-    $imagename=time().'.'.uniqid().$ext;
+    $imagename=time().'.'.uniqid().'.'.$ext;
     $image->move(public_path('storage/product/'),$imagename);
     
 
@@ -102,13 +103,57 @@ if(!empty($update)){
         return redirect()->route('product.list')->with('success','Product  Updated Successfully'); 
 }
     }
-       public function destroy($id){
-        $delid=Product::find($id);
-        if($delid == null){
-            return redirect()->route('product.list')->with('danger','product not found');
-        }
-        $delid->delete();
-            return redirect()->route('product.list')->with('success','product Deleted Successfully');
+  public function destroy($id)
+{
+    // Find the product with its images
+    $product = Product::with(['productImage','productsize'])->find($id);
+    
+    if (!$product) {
+        return redirect()->route('product.list')->with('danger', 'Product not found');
+    }
 
-    } 
+    // Delete all associated images
+    foreach ($product->productImage as $image) {
+        // Delete the physical file
+        $imagePath = public_path('storage/product/' . $image->image_name);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+        foreach ($product->productsize as $size) {
+        $size->delete();
+    }
+        
+        // Delete the database record
+        $image->delete();
+    }
+
+    // Finally delete the product
+    $product->delete();
+
+    return redirect()->route('product.list')
+           ->with('success', 'Product and all associated images deleted successfully');
+}
+
+    // for product image delete 
+    public function deleteImage($id)
+{
+    $image = ProductImage::find($id);
+
+    if ($image) {
+          $productId = $image->product_id;
+        $imagePath = public_path('storage/product/' . $image->image_name);
+
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+
+        $image->delete();
+
+        return redirect()->route('product.edit',$productId)->with('success','product Image Deleted Successfully');
+    }
+
+            return redirect()->route('product.edit')->with('danger','product did not found ');
+
+}
+
 }
