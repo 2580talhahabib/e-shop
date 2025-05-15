@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\ProductController;
 use App\Http\Controllers\admin\ProductSubCategoryController;
 use App\Http\Controllers\admin\SubCategoryController;
+use App\Http\Controllers\frontant\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,12 +22,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/',[HomeController::class,'index'])->name('Home');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
+
+
+
+
+
+
+
 // Admin Side Routes 
-
 
 // Auth Controller 
 Route::get('/register',[AuthController::class,'register'])->name('Auth.register');
